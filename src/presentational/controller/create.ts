@@ -1,5 +1,5 @@
 import { IController } from "../../config/expressAdapter";
-import { BadRequest, Created, ExceptionError } from "../helpers/httpResponse";
+import { BadRequest, Created } from "../helpers/httpResponse";
 import { ISchemaValidator } from "../helpers/schemaValidator";
 
 export interface ICreateUsecase<In, Out> {

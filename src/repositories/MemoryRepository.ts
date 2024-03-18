@@ -26,18 +26,21 @@ export class MemoryRepository<T extends Entity> {
   }
 
   public async update(data: T) {
-    const index = this.items.findIndex((e) => e?.id === data.id);
+    const index = this.items.findIndex((e) => e?.id === Number(data.id));
+    console.log("items: ", this.items);
+    console.log("id: ", data.id);
     if (index === -1) throw new Error("O Id informado não existe!");
-    this.items[index] = data;
-    return data;
+    const updatedObj = {
+      ...data,
+      id: Number(data.id),
+    };
+    this.items[index] = updatedObj;
+    return updatedObj;
   }
 
   public async delete(data: T) {
-    for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i]?.id === data.id) {
-        this.items[i] = null;
-      }
-    }
-    throw new Error("item não encontrado");
+    let index = this.items.indexOf(data);
+    if (index !== -1) this.items.splice(index, 1);
+    return data;
   }
 }

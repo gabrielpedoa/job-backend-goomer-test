@@ -19,8 +19,7 @@ export class RestaurantService {
 
   async loadAll() {
     const items = await this.repository.loadAll();
-    console.log(items)
-    return items
+    return items;
   }
 
   async loadById(data: RestaurantEntity): Promise<RestaurantEntity> {
@@ -29,10 +28,15 @@ export class RestaurantService {
     return restaurant;
   }
 
-  async delete(data: RestaurantEntity): Promise<null> {
+  async delete(
+    data: RestaurantEntity
+  ): Promise<{ message: string; data: RestaurantEntity }> {
     const restaurant = await this.repository.loadById(data.id);
     if (!restaurant) throw new NotFoundException("Restaurante não encontrado!");
-    return null;
+    const del = await this.repository.delete(restaurant);
+    return {
+      message: "Restaurante foi deletado",
+      data: del,
+    };
   }
 }
-
