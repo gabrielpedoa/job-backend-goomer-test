@@ -1,18 +1,19 @@
 export type Entity = {
-  id: number;
+  id: number | string;
 };
 
 type CanBeNull<T> = T | null;
 
 export class MemoryRepository<T extends Entity> {
-  private items: CanBeNull<T>[] = [];
+  protected items: CanBeNull<T>[] = [];
 
   public async create(data: Omit<T, "id">) {
     const created = {
-      ...data,
       id: this.items.length + 1,
+      ...data,
     } as T;
     this.items.push(created);
+
     return created as T;
   }
 
