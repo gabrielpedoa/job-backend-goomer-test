@@ -1,4 +1,4 @@
-import { IController } from "../../config/expressAdapter";
+import { IController } from "../../config/utils/expressAdapter";
 import { BadRequest, Created } from "../helpers/httpResponse";
 import { ISchemaValidator } from "../helpers/schemaValidator";
 

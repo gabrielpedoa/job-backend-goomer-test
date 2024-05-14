@@ -1,5 +1,5 @@
 import { Router } from "express";
-import expressAdapter from "../expressAdapter";
+import expressAdapter from "../utils/expressAdapter";
 import { createRestaurantController } from "../../controllers/restaurant/create";
 import { loadAllRestaurantController } from "../../controllers/restaurant/loadAll";
 import { loadByIdRestaurantController } from "../../controllers/restaurant/loadById";

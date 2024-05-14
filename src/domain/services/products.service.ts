@@ -1,4 +1,4 @@
-import { NotFoundException } from "../../config/exceptions/notFoundException";
+import { NotFoundException } from "../../config/exceptions/errors/notFound";
 import { MemoryRepository } from "../../repositories/MemoryRepository";
 import { ProductMemoryRepository } from "../../repositories/ProductMemoryRepository";
 import { ProductEntity } from "../entities/product.entity";
@@ -17,7 +17,7 @@ export class ProductService {
     if (!restaurant) throw new NotFoundException("Restaurante não encontrado");
     const product = new ProductEntity(data).getProduct;
     await this.productRepository.create(product);
-    console.log(product)
+    console.log(product);
     return product;
   }
 
@@ -36,7 +36,12 @@ export class ProductService {
 
   async delete(data: ProductEntity) {
     const product = await this.productRepository.loadById(data.id);
+    console.log("aq:  ",product)
     if (!product) throw new NotFoundException("Produto não encontrado");
-    return await this.productRepository.delete(data);
+    const del = await this.productRepository.delete(product);
+    return {
+      message: "O produto foi deletado",
+      data: del,
+    };
   }
 }

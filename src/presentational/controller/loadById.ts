@@ -1,4 +1,4 @@
-import { IController } from "../../config/expressAdapter";
+import { IController } from "../../config/utils/expressAdapter";
 import { Ok } from "../helpers/httpResponse";
 
 export interface ILoadByIdUseCase<In, Out> {

@@ -1,4 +1,4 @@
-import { NotFoundException } from "../../config/exceptions/notFoundException";
+import { NotFoundException } from "../../config/exceptions/errors/notFound";
 import { MemoryRepository } from "../../repositories/MemoryRepository";
 import { RestaurantEntity } from "../entities/restaurant.entity";
 
